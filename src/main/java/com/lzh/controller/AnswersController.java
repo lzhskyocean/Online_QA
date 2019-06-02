@@ -45,14 +45,17 @@ public class AnswersController {
             return Constant.REDIRECT + Constant.QUESTIONS_TOADDANSWER + qId;
         }
 
+        //保存问题的回答
         Integer count = answersService.saveAnswerByQId(answers);
 
         if(count == 1 ){//回答成功,问题回答次数+1
             Questions questions = new Questions();
             questions.setId(qId);
             questions.setAnswerCount(answerCount+1);
+
+            //问题回答成功,需改问题的回答的次数
             Integer count2 = questionsService.updateAnswerCount(questions);
-            if (count2 == 1){
+            if (count2 == 1){//回答成功,重定向到首页
                 redirectAttributes.addAttribute("AnsAddMsg","回答提交成功!");
                 return Constant.REDIRECT + Constant.QUESTIONS_LIST;
             }
@@ -61,6 +64,7 @@ public class AnswersController {
         redirectAttributes.addAttribute("AnsAddMsg","回答提交失败!");
         return Constant.REDIRECT + Constant.QUESTIONS_TOADDANSWER + qId;
     }
+
 
 
 }
