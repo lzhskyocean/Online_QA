@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lzh.dao.AnswersDao">
+
+    <!--
+    //通过qId查询问题答案
+    List<Answers> findAnswerByQId(@Param("qId") Long qId);
+    -->
+    <select id="findAnswerByQId" resultType="Answers">
+        select * from
+            answers
+        where
+            q_id = #{qId}
+        order by ans_date desc
+    </select>
+
+    <!--
+    //添加问题回答
+    Integer saveAnswerByQId(Answers answers);
+    -->
+    <insert id="saveAnswerByQId">
+        insert into
+            answers
+        (ans_content, q_id)
+        VALUES
+        (#{ansContent},#{qId})
+    </insert>
+
+</mapper>

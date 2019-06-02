@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lzh.dao.QuestionsDao">
+
+    <!--
+    //查询所有的问题
+    List<Questions> findAllQuestions(@Param("offset") Integer offset,
+                                     @Param("size") Integer size);
+    -->
+    <select id="findAllQuestionsByPage" resultType="Questions">
+        select * from
+            questions
+        order by last_modified desc
+        limit #{offset},#{size}
+
+    </select>
+
+    <!--
+    //查询问题总数
+    Integer findQuestionsCount();
+    -->
+    <select id="findQuestionsCount" resultType="Integer">
+        select count(1) from questions
+    </select>
+
+    <!--
+    //添加问题
+    Integer saveQuestions(Questions questions);
+    -->
+    <insert id="saveQuestions">
+        insert into
+            questions
+        (title, detail_desc)
+        values
+        (#{title},#{detailDesc})
+
+    </insert>
+
+    <!--
+    //通过qId问题查询
+    Questions findQuestionByQId(@Param("qId") Long qId);
+    -->
+    <select id="findQuestionByQId" resultType="Questions">
+        select * from questions where id = #{qId}
+    </select>
+
+    <!--
+    //通过qId进行修改问题的回答次数
+    Integer updateAnswerCount(Questions questions);
+    -->
+    <update id="updateAnswerCount">
+        update
+            questions
+        set
+        answer_count = #{answerCount}
+        where id = #{id}
+    </update>
+
+
+</mapper>
