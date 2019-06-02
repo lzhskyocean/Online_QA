@@ -58,7 +58,7 @@ public class QuestionsController {
     /*
     * 2.添加问题
     * */
-    @PostMapping("/add")
+    @RequestMapping("/add")
     public String questionsAdd(@Valid Questions questions,
                                BindingResult bindingResult,
                                Model model,
