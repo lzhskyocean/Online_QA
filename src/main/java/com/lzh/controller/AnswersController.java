@@ -24,11 +24,6 @@ public class AnswersController {
     @Autowired
     private AnswersService answersService;
 
-    @Autowired
-    private QuestionsService questionsService;
-
-
-
     @PostMapping("/add")
     public String addAnswer(@Valid Answers answers,
                             BindingResult bindingResult,
@@ -49,7 +44,14 @@ public class AnswersController {
         questions.setId(qId);
         questions.setAnswerCount(answerCount+1);
 
-        answersService.saveAnswerByQId(answers,questions);
+        boolean b = answersService.saveAnswerByQId(answers, questions);
+
+        if (b){
+
+            redirectAttributes.addAttribute("AnsAddMsg","回答提交成功!");
+            return Constant.REDIRECT + Constant.QUESTIONS_LIST;
+
+        }
 
         /*//保存问题的回答
         Integer count = answersService.saveAnswerByQId(answers);

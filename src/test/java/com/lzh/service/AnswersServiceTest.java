@@ -2,6 +2,7 @@ package com.lzh.service;
 
 import com.lzh.MyTest;
 import com.lzh.bean.Answers;
+import com.lzh.bean.Questions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,9 +39,11 @@ public class AnswersServiceTest extends MyTest {
 
         answers.setAnsContent("辣鸡问题,太简单了");
 
-        Integer count = answersService.saveAnswerByQId(answers);
+        Questions questions = new Questions();
 
-        System.out.println(count);
+        boolean b = answersService.saveAnswerByQId(answers,questions);
+
+        System.out.println(b);
 
 
     }

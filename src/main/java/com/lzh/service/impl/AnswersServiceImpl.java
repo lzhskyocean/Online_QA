@@ -32,6 +32,9 @@ public class AnswersServiceImpl implements AnswersService {
         return answersDao.findAnswerByQId(qId);
     }
 
+    /*
+    * 开启事务(业务)
+    * */
     @Override
     @Transactional
     public boolean saveAnswerByQId(Answers answers, Questions questions) {
