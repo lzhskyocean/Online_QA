@@ -1,6 +1,7 @@
 package com.lzh.service;
 
 import com.lzh.bean.Answers;
+import com.lzh.bean.Questions;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface AnswersService {
     List<Answers> findAnswerByQId(Long qId);
 
     //2.添加问题回答
-    Integer saveAnswerByQId(Answers answers);
+    boolean saveAnswerByQId(Answers answers, Questions questions);
 }

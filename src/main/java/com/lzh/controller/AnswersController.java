@@ -45,7 +45,13 @@ public class AnswersController {
             return Constant.REDIRECT + Constant.QUESTIONS_TOADDANSWER + qId;
         }
 
-        //保存问题的回答
+        Questions questions = new Questions();
+        questions.setId(qId);
+        questions.setAnswerCount(answerCount+1);
+
+        answersService.saveAnswerByQId(answers,questions);
+
+        /*//保存问题的回答
         Integer count = answersService.saveAnswerByQId(answers);
 
         if(count == 1 ){//回答成功,问题回答次数+1
@@ -59,7 +65,7 @@ public class AnswersController {
                 redirectAttributes.addAttribute("AnsAddMsg","回答提交成功!");
                 return Constant.REDIRECT + Constant.QUESTIONS_LIST;
             }
-        }
+        }*/
 
         redirectAttributes.addAttribute("AnsAddMsg","回答提交失败!");
         return Constant.REDIRECT + Constant.QUESTIONS_TOADDANSWER + qId;

@@ -70,6 +70,8 @@ public class QuestionsController {
             return Constant.QUESTIONS_ADD_PAGE;
         }
 
+
+
         Integer count = questionsService.saveQuestions(questions);
 
         if (count == 1){//添加成功,重定向到问题显示列表
